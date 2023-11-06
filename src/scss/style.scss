@@ -1,0 +1,28 @@
+/* ======Миксины====== */
+@import 'mixins.scss';
+/* ======/Миксины====== */
+
+/* ======Шрифты====== */
+@import 'fonts.scss';
+/* ======/Шрифты====== */
+
+/* ======Переменные====== */
+@import 'variables.scss';
+
+$font: Inter;
+$dfont: 14px;
+
+/* ======/Переменные====== */
+
+/* ======Обнуление====== */
+@import 'null.scss';
+/* ======/Обнуление====== */
+
+#root {
+    padding: 85px;
+}
+
+body {
+    font-family: $font;
+    background-color: #E7F6FF;
+}

@@ -1,0 +1,25 @@
+.inputBlock {
+    border: 1px solid #F3F3F3;
+    padding: 14px 18px;
+    border-radius: 10px;
+
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.input {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #000000;
+
+    &::placeholder {
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 17px;
+        color: #C4C4C4;
+    }
+}
