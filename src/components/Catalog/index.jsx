@@ -1,4 +1,4 @@
-import CatalogCard from '../CatalogCard';
+import CatalogCard from './CatalogCard';
 import styles from './Catalog.module.scss'
 
 const Catalog = () => {

@@ -1,5 +1,6 @@
 import Banner from '../../components/Banner';
 import Catalog from '../../components/Catalog';
+import Drawer from '../../components/Drawer';
 import Input from '../../ui/Input';
 import styles from './Home.module.scss'
 
@@ -14,6 +15,7 @@ const Home = () => {
                 </div>
                 <Catalog/>
             </div>
+            <Drawer status={'default'}/>
         </main>
     );
 }
