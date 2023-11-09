@@ -10,8 +10,9 @@ const Home = ({cart, setCart, data, setData}) => {
 
     const handlerInput = (e) => {
         setValue(e.target.value);
-        console.log(value);
-    }
+    };
+
+    const filter = (item) => item.title.includes(value);
 
     return (  
         <main className={styles.home}>
@@ -21,9 +22,8 @@ const Home = ({cart, setCart, data, setData}) => {
                     <h1 className={styles.title}>Все кроссовки</h1>
                     <Input value={value} event={handlerInput}/>
                 </div>
-                <Catalog data={data} cart={cart} setCart={setCart} filter={value}/>
+                <Catalog data={data} cart={cart} setCart={setCart} filter={filter}/>
             </div>
-            <Drawer status={'default'} cart={cart} setCart={setCart}/>
         </main>
     );
 }

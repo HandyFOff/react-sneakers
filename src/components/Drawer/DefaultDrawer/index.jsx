@@ -1,22 +1,34 @@
 import Button from '../../../ui/Button';
+import { API2 } from '../../App';
 import DrawerItem from '../DrawerItem';
 import styles from './DefaultDrawer.module.scss';
 
-const DefaultDrawer = ({ setStatus, setCart, cart }) => {
+const DefaultDrawer = ({ setStatus, setCart, cart, setOrders }) => {
 
     let tax = 0.05
     let total = cart.data.map((item) => item.price).reduce((acc, item) => acc + item, 0);
 
+    const hadlerOrder = async (data) => {
+        await fetch(`${API2}/orders`, {
+            method: 'POST',
+            headers:{"Content-type": "application/json"},
+            body: JSON.stringify(data)
+        }).then((res) => console.log(res.json()));
+    }
+
     const handlerDrawer = async () => {
-        const allCartResponse = await fetch(`https://6543a8f001b5e279de20c076.mockapi.io/cart`)
-        .then((res) => res.json());
-    
-        for (const item of allCartResponse) {
+        const response = await fetch('https://6543a8f001b5e279de20c076.mockapi.io/cart').then((res) => res.json());
+        console.log(response);
+        console.log(cart.data);
+
+        hadlerOrder(response);
+
+        for (const item of response) {
             await fetch(`https://6543a8f001b5e279de20c076.mockapi.io/cart/${item.id}`, {
                 method: 'DELETE',
             });
         }
-
+        
         setCart((prev) => ({ ...prev, data: [] }));
         setStatus((prev) => !prev);
     }
@@ -28,6 +40,7 @@ const DefaultDrawer = ({ setStatus, setCart, cart }) => {
                     <DrawerItem
                         key={item.id}
                         id={item.id}
+                        parentId={item.id}
                         title={item.title}
                         price={item.price}
                         image={item.image}

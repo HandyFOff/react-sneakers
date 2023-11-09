@@ -1,34 +1,35 @@
 import { API } from '../../App';
 import styles from './DrawerItem.module.scss'
 
-const DrawerItem = (props) => {
+const DrawerItem = ({id, title, image, price, parentId, setCart}) => {
     
-    const removeItem = (id) => {
-        props.setCart((prev) => ({
-            ...prev,
-            data: prev.data.filter((item) => item.id !== id)
-        }));
+    const removeItem = async () => {
+        const response = await fetch(`${API}cart`).then((res) => res.json());
+        const filterId = response.filter((item) => +item.parentId === +id);
 
-        console.log(props.itemId, ' ', id);
-
-        fetch(`${API}cart/${id}`, {
+        await fetch(`${API}cart/${filterId[0].id}`, {
             method: 'DELETE',
             headers: {
                 "Content-type": "application/json",
             }
-        })
+        });
+
+        setCart((prev) => ({
+            ...prev,
+            data: prev.data.filter((item) => item.id !== id)
+        }));
     }
 
     return (
         <div className={styles.item}>
             <div className={styles.img}>
-                <img src={props.image} alt="Sneakers" />
+                <img src={image} alt="Sneakers" />
             </div>
             <div className={styles.info}>
-                <h1 className={styles.title}>{props.title}</h1>
-                <h1 className={styles.price}>{props.price} руб.</h1>
+                <h1 className={styles.title}>{title}</h1>
+                <h1 className={styles.price}>{price} руб.</h1>
             </div>
-            <button className={styles.btn} onClick={() => removeItem(props.id)}>
+            <button className={styles.btn} onClick={removeItem}>
                 <img src="assets/icons/remove.svg" alt="Remove Item" />
             </button>
         </div>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
 
 const Navigation = ({setCart, cart}) => {
@@ -12,14 +13,14 @@ const Navigation = ({setCart, cart}) => {
                 <img src="assets/icons/cart.svg" className={styles.icon} alt="cart" />
                 <h1>{total} руб.</h1>
             </div>
-            <div className={styles.item}>
+            <Link to={'/favorites'} className={styles.item}>
                 <img src="assets/icons/favorite.svg" className={styles.icon} alt="cart" />
                 <h1>Закладки</h1>
-            </div>
-            <div className={styles.item}>
+            </Link>
+            <Link to={'/orders'} className={styles.item}>
                 <img src="assets/icons/profile.svg" className={styles.icon} alt="cart" />
                 <h1>Профиль</h1>
-            </div>
+            </Link>
         </nav>
     );
 }
