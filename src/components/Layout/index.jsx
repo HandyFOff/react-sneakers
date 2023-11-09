@@ -1,10 +1,10 @@
 import styles from "./Layout.module.scss"
 import Header from "../Header";
 
-const Layout = ({children}) => {
+const Layout = ({children, setCart, cart}) => {
     return (  
         <div className={styles.wrapper}>
-            <Header/>
+            <Header setCart={setCart} cart={cart}/>
             {children}
         </div>
     );

@@ -1,13 +1,13 @@
 import Navigation from '../Navigation';
 import styles from './Header.module.scss'
 
-const Header = () => {
+const Header = ({setCart, cart}) => {
     return (  
         <header className={styles.header}>
             <div className={styles.logo}>
                 <img src="assets/logo.svg" alt="logo" />
             </div>
-            <Navigation/>
+            <Navigation setCart={setCart} cart={cart}/>
         </header>
     );
 }

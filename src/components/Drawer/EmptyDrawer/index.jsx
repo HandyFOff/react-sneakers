@@ -1,7 +1,12 @@
 import styles from './EmptyDrawer.module.scss';
 import Button from '../../../ui/Button';
 
-const EmptyDrawer = () => {
+const EmptyDrawer = ({setCart}) => {
+
+    const handlerDrawer = () => {
+        setCart((prev) => ({...prev, status: false}))
+    }
+
     return (  
         <div className={styles.content}>
             <div className={styles.img}>
@@ -11,7 +16,7 @@ const EmptyDrawer = () => {
                 <h1 className={styles.title}>Корзина пустая</h1>
                 <p className={styles.description}>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
             </div>
-            <Button title={'Вернуться назад'} type={'back'}/>
+            <Button title={'Вернуться назад'} type={'back'} event={handlerDrawer}/>
         </div>
     );
 }

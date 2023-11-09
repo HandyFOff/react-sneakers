@@ -9,6 +9,9 @@
     align-items: center;
     gap: 10px;
 
+    cursor: pointer;
+    transition: transform .3s ease;
+
     &>h1 {
         font-family: Inter;
         font-size: 14px;

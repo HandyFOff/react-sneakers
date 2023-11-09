@@ -1,7 +1,13 @@
 import Button from '../../../ui/Button';
 import styles from './SuccsesfulDrawer.module.scss';
 
-const SuccsesfulDrawer = () => {
+const SuccsesfulDrawer = ({setCart, setStatus}) => {
+
+    const handlerDrawer = () => {
+        setCart((prev) => ({...prev, status: false}))
+        setTimeout(() => setStatus(false), 300)
+    }
+
     return (  
         <div className={styles.content}>
             <div className={styles.img}>
@@ -11,7 +17,7 @@ const SuccsesfulDrawer = () => {
                 <h1 className={styles.title}>Заказ оформлен!</h1>
                 <p className={styles.description}>Ваш заказ #18 скоро будет передан курьерской доставке</p>
             </div>
-            <Button title={'Вернуться назад'} type={'back'}/>
+            <Button title={'Вернуться назад'} type={'back'} event={handlerDrawer}/>
         </div>
     );
 }
