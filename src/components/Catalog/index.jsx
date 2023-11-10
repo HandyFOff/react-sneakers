@@ -1,13 +1,17 @@
 import CatalogCard from './CatalogCard';
 import styles from './Catalog.module.scss'
 import Button from '../../ui/Button';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AppContext } from '../../context';
 
-const Catalog = ({ data, setCart, filter, cart }) => {
+const Catalog = ({ filter }) => {
+    const {data} = useContext(AppContext)
+
     const step = 12;
     let [max, setMax] = useState(0);
     let filtredArray = data.filter(filter);
     const moreBtnRule = filtredArray.length - max < step ? max = filtredArray.length - max + max : max += step;
+
 
     return (
         <div className={styles.catalog}>
@@ -20,9 +24,6 @@ const Catalog = ({ data, setCart, filter, cart }) => {
                         title={sneaker.title}
                         price={sneaker.price}
                         image={sneaker.image}
-                        cart={cart}
-                        setCart={setCart}
-                        added={cart.data.some((obj) => +obj.parentId === +sneaker.id)}
                     />
                 )}
             </div>

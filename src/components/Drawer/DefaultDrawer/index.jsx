@@ -2,36 +2,30 @@ import Button from '../../../ui/Button';
 import { API2 } from '../../App';
 import DrawerItem from '../DrawerItem';
 import styles from './DefaultDrawer.module.scss';
+import { useCart } from '../../../hooks/useCart.js'
+import axios from 'axios';
 
-const DefaultDrawer = ({ setStatus, setCart, cart, setOrders }) => {
+const DefaultDrawer = ({ setStatus }) => {
 
-    let tax = 0.05
-    let total = cart.data.map((item) => item.price).reduce((acc, item) => acc + item, 0);
+    const {tax, total, cart, setCart} = useCart();
 
-    const hadlerOrder = async (data) => {
-        await fetch(`${API2}/orders`, {
-            method: 'POST',
-            headers:{"Content-type": "application/json"},
-            body: JSON.stringify(data)
-        }).then((res) => console.log(res.json()));
+    const hadlerOrder = async () => {
+        await axios.post(`${API2}/orders`, {items: cart.data});
     }
 
     const handlerDrawer = async () => {
-        const response = await fetch('https://6543a8f001b5e279de20c076.mockapi.io/cart').then((res) => res.json());
-        console.log(response);
-        console.log(cart.data);
 
-        hadlerOrder(response);
+        hadlerOrder();
 
-        for (const item of response) {
-            await fetch(`https://6543a8f001b5e279de20c076.mockapi.io/cart/${item.id}`, {
-                method: 'DELETE',
-            });
+        for (const item of cart.data) {
+            await axios.delete(`https://6543a8f001b5e279de20c076.mockapi.io/cart/${item.id}`);
         }
         
         setCart((prev) => ({ ...prev, data: [] }));
         setStatus((prev) => !prev);
     }
+
+    cart.data.map((item) => console.log(item.id))
 
     return (
         <>
@@ -58,7 +52,7 @@ const DefaultDrawer = ({ setStatus, setCart, cart, setOrders }) => {
                     <div className={styles.tax}>
                         <h1 className={styles.title}>Налог 5%:</h1>
                         <div className={styles.underline}></div>
-                        <h1 className={styles.price}>{Math.floor(total * tax)} руб.</h1>
+                        <h1 className={styles.price}>{tax} руб.</h1>
                     </div>
                 </div>
                 <Button title={'Оформить заказ'} type={'forward'} event={handlerDrawer} />

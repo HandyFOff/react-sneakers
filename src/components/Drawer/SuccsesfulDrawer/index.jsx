@@ -1,7 +1,11 @@
+import { useContext } from 'react';
 import Button from '../../../ui/Button';
 import styles from './SuccsesfulDrawer.module.scss';
+import { AppContext } from '../../../context';
 
-const SuccsesfulDrawer = ({setCart, setStatus}) => {
+const SuccsesfulDrawer = ({setStatus}) => {
+
+    const {setCart} = useContext(AppContext);
 
     const handlerDrawer = () => {
         setCart((prev) => ({...prev, status: false}))

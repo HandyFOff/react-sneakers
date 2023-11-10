@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "./Navigation.module.scss";
+import { useCart } from "../../hooks/useCart";
 
-const Navigation = ({setCart, cart}) => {
-    let total = cart.data.map((item) => item.price).reduce((acc, item) => acc + item, 0);
+const Navigation = () => {
+    const {setCart, total} = useCart();
 
     return (  
         <nav className={styles.nav}>

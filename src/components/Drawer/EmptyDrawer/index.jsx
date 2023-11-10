@@ -1,7 +1,11 @@
 import styles from './EmptyDrawer.module.scss';
 import Button from '../../../ui/Button';
+import { useContext } from 'react';
+import { AppContext } from '../../../context';
 
-const EmptyDrawer = ({setCart}) => {
+const EmptyDrawer = () => {
+
+    const {setCart} = useContext(AppContext)
 
     const handlerDrawer = () => {
         setCart((prev) => ({...prev, status: false}))

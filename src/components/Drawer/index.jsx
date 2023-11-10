@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DefaultDrawer from "./DefaultDrawer";
 import styles from "./Drawer.module.scss"
 import EmptyDrawer from "./EmptyDrawer";
 import SuccsesfulDrawer from "./SuccsesfulDrawer";
+import { AppContext } from "../../context";
 
-const Drawer = ({cart, setCart, setOrders}) => {
+const Drawer = () => {
+
+    const {cart, setCart} = useContext(AppContext);
 
     const [status, setStatus] = useState(false)
 
@@ -20,7 +23,7 @@ const Drawer = ({cart, setCart, setOrders}) => {
         <div className={styles.overlay} onClick={handlerDrawer} data-drawer={cart.status}>
             <div className={styles.drawer}>
                 <h1 className={styles.title}>Корзина</h1>
-                {status ? <SuccsesfulDrawer setCart={setCart} setStatus={setStatus}/> : cart.data.length ? <DefaultDrawer setOrders={setOrders} cart={cart} setCart={setCart} setStatus={setStatus}/> : <EmptyDrawer setCart={setCart}/>}
+                {status ? <SuccsesfulDrawer setStatus={setStatus}/> : cart.data.length ? <DefaultDrawer setStatus={setStatus}/> : <EmptyDrawer/>}
             </div>
         </div>
     );

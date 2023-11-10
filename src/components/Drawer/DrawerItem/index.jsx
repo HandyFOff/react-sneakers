@@ -1,22 +1,26 @@
+import { useContext } from 'react';
 import { API } from '../../App';
 import styles from './DrawerItem.module.scss'
+import { AppContext } from '../../../context';
+import axios from 'axios';
 
-const DrawerItem = ({id, title, image, price, parentId, setCart}) => {
+const DrawerItem = ({id, title, image, price, parentId}) => {
+    const {cart, setCart} = useContext(AppContext);
+
+    console.log(id);
     
     const removeItem = async () => {
-        const response = await fetch(`${API}cart`).then((res) => res.json());
-        const filterId = response.filter((item) => +item.parentId === +id);
+        const response = await axios.get(`${API}cart`);
+        console.log(response.data);
+        const filterId = response.data.filter((item) => +item.id === +id);
 
-        await fetch(`${API}cart/${filterId[0].id}`, {
-            method: 'DELETE',
-            headers: {
-                "Content-type": "application/json",
-            }
-        });
+        console.log(cart, response.data, parentId);
 
+        await axios.delete(`${API}cart/${filterId[0].id}`);
+        
         setCart((prev) => ({
             ...prev,
-            data: prev.data.filter((item) => item.id !== id)
+            data: prev.data.filter((item) => item.id !== parentId),
         }));
     }
 
