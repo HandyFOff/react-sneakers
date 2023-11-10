@@ -23,11 +23,11 @@
         flex-direction: column;
         gap: 20px;
         align-items: flex-start;
+        &>div {
+            width: 100%;
+        }
     }
     
-    &>div {
-        width: 100%;
-    }
 }
 
 .title {

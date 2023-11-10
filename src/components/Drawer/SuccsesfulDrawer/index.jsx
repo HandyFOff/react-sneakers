@@ -7,8 +7,6 @@ const SuccsesfulDrawer = ({setStatus}) => {
 
     const {setCart, orders} = useContext(AppContext);
 
-    console.log(orders);
-
     const handlerDrawer = () => {
         setCart((prev) => ({...prev, status: false}))
         setTimeout(() => setStatus(false), 300)
@@ -21,7 +19,7 @@ const SuccsesfulDrawer = ({setStatus}) => {
             </div>
             <div className={styles.info}>
                 <h1 className={styles.title}>Заказ оформлен!</h1>
-                <p className={styles.description}>Ваш заказ #{+(orders[orders.length - 1].id) + 1} скоро будет передан курьерской доставке</p>
+                <p className={styles.description}>Ваш заказ #{Number(orders[orders.length - 1].id) + 1} скоро будет передан курьерской доставке</p>
             </div>
             <Button title={'Вернуться назад'} type={'back'} event={handlerDrawer}/>
         </div>

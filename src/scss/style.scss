@@ -41,4 +41,8 @@ $dfont: 14px;
 body {
     font-family: $font;
     background-color: #E7F6FF;
+
+    @media (max-width: 425px) {
+        background-color: #FFFFFF;
+    }
 }

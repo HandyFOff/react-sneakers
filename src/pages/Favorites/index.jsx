@@ -2,13 +2,14 @@ import { useContext } from 'react';
 import styles from './Favorites.module.scss';
 import { AppContext } from '../../context';
 import CatalogCard from '../../components/Catalog/CatalogCard';
+import EmptyFavorites from './EmptyFavorites';
 
 const Favorites = () => {
-    const {favorites} = useContext(AppContext);
+    const { favorites } = useContext(AppContext);
 
-    return (  
+    return (
         <div className={styles.favorites}>
-            <div className={styles.content}>
+            {favorites.length > 0 ? <div className={styles.content}>
                 {favorites.map((item) =>
                     <CatalogCard
                         key={item.id}
@@ -20,9 +21,9 @@ const Favorites = () => {
                         active
                     />
                 )}
-            </div>
+            </div> : <div className={styles.empty}><EmptyFavorites /></div>}
         </div>
     );
 }
- 
+
 export default Favorites;

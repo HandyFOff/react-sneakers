@@ -7,10 +7,12 @@ const Navigation = () => {
 
     return (  
         <nav className={styles.nav}>
-            <div className={styles.item + ' ' + styles.price} onClick={() => setCart((prev) => ({
-                ...prev,
-                status: !prev.status
-            }))}>
+            <div className={styles.item + ' ' + styles.price} onClick={() => {
+                setCart((prev) => ({
+                    ...prev,
+                    status: !prev.status
+                }));
+            }}>
                 <img src="assets/icons/cart.svg" className={styles.icon} alt="cart" />
                 <h1>{total} руб.</h1>
             </div>
