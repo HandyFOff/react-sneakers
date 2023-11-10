@@ -9,16 +9,14 @@ const Orders = () => {
     return (
         <div className={styles.orders}>
             <div className={styles.content}>
-                {orders[0] && orders[0].items.map((item) =>
-                    <CatalogCard
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        price={item.price}
-                        image={item.image}
-                        parentId={item.id}
-                    />
-                )}
+                {orders.map((index) => index.items.map((item) => <CatalogCard
+                    key={item.id}
+                    id={item.id}
+                    title={item.title}
+                    price={item.price}
+                    image={item.image}
+                    parentId={item.id}
+                />))}
             </div>
         </div>
     );

@@ -37,6 +37,20 @@
 
     transition: all .3s ease;
     transform: translateX(100%);
+
+    @media (max-width: 1024px) {
+        max-width: 100%;
+        width: 40%;
+    }
+
+    @media (max-width: 768px) {
+        width: 60%;
+    }
+
+    @media (max-width: 596px) {
+        width: 100%;
+        padding: 24px 20px;
+    }
 }
 
 .title {
@@ -51,4 +65,10 @@
     margin-top: 30px;
     display: flex;
     flex-direction: column;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

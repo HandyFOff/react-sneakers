@@ -5,7 +5,9 @@ import { AppContext } from '../../../context';
 
 const SuccsesfulDrawer = ({setStatus}) => {
 
-    const {setCart} = useContext(AppContext);
+    const {setCart, orders} = useContext(AppContext);
+
+    console.log(orders);
 
     const handlerDrawer = () => {
         setCart((prev) => ({...prev, status: false}))
@@ -19,7 +21,7 @@ const SuccsesfulDrawer = ({setStatus}) => {
             </div>
             <div className={styles.info}>
                 <h1 className={styles.title}>Заказ оформлен!</h1>
-                <p className={styles.description}>Ваш заказ #18 скоро будет передан курьерской доставке</p>
+                <p className={styles.description}>Ваш заказ #{+(orders[orders.length - 1].id) + 1} скоро будет передан курьерской доставке</p>
             </div>
             <Button title={'Вернуться назад'} type={'back'} event={handlerDrawer}/>
         </div>

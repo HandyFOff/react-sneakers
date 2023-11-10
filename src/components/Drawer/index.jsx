@@ -22,7 +22,10 @@ const Drawer = () => {
     return (
         <div className={styles.overlay} onClick={handlerDrawer} data-drawer={cart.status}>
             <div className={styles.drawer}>
-                <h1 className={styles.title}>Корзина</h1>
+                <div className={styles.nav}>
+                    <h1 className={styles.title}>Корзина</h1>
+                    <img src="assets/icons/remove.svg" alt="" onClick={() => setCart((prev) => ({...prev, status: false}))}/>
+                </div>
                 {status ? <SuccsesfulDrawer setStatus={setStatus}/> : cart.data.length ? <DefaultDrawer setStatus={setStatus}/> : <EmptyDrawer/>}
             </div>
         </div>

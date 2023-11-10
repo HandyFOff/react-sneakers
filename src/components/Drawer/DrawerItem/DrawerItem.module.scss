@@ -5,6 +5,10 @@
 
     display: flex;
     gap: 20px;
+
+    @media (max-width: 596px) {
+        padding: 15px;
+    }
 }
 
 .img {

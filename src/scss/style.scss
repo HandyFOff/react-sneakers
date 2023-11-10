@@ -20,6 +20,22 @@ $dfont: 14px;
 
 #root {
     padding: 85px;
+
+    @media (max-width: 1024px) {
+        padding: 75px;
+    }
+
+    @media (max-width: 896px) {
+        padding: 55px;
+    }
+
+    @media (max-width: 596px) {
+        padding: 35px;
+    }
+
+    @media (max-width: 425px) {
+        padding: 0px;
+    }
 }
 
 body {

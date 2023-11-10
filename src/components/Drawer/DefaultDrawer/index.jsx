@@ -15,7 +15,7 @@ const DefaultDrawer = ({ setStatus }) => {
 
     const handlerDrawer = async () => {
 
-        hadlerOrder();
+        await hadlerOrder();
 
         for (const item of cart.data) {
             await axios.delete(`https://6543a8f001b5e279de20c076.mockapi.io/cart/${item.id}`);
