@@ -10,18 +10,17 @@ const MyLoader = (props) => (
     <div className={styles.loader}>
         <ContentLoader
             speed={2}
-            width={150}
+            width={'100%'}
             height={195}
-            viewBox="0 0 150 195"
+            viewBox="0 0 100% 195"
             backgroundColor="#f3f3f3"
             foregroundColor="#ecebeb"
             {...props}
         >
-            <rect x="1" y="108" rx="3" ry="3" width="150" height="15" />
-            <rect x="1" y="131" rx="3" ry="3" width="93" height="15" />
+            <rect x="1" y="108" rx="3" ry="3" width="100%" height="15" />
+            <rect x="1" y="131" rx="3" ry="3" width="100%" height="15" />
             <rect x="1" y="168" rx="8" ry="8" width="80" height="24" />
-            <rect x="1" y="1" rx="10" ry="10" width="150" height="91" />
-            <rect x="118" y="160" rx="8" ry="8" width="32" height="32" />
+            <rect x="1" y="1" rx="10" ry="10" width="100%" height="91" />
         </ContentLoader>
     </div>
 )
