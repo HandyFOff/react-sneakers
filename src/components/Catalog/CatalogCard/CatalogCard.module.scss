@@ -1,6 +1,6 @@
 .card {
     border: 1px solid #F3F3F3;
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 20px 30px 35px 30px;
 
     display: flex;
@@ -21,6 +21,11 @@
 .img {
     max-width: 100%;
     height: auto;
+    width: 100%;
+
+    @media (max-width: 425px) {
+        width: auto;
+    }
 }
 
 .content {

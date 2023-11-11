@@ -17,6 +17,7 @@ const Orders = () => {
                     price={item.price}
                     image={item.image}
                     parentId={item.id}
+                    noUi={true}
                 />))}
             </div> : <EmptyOrders/>}
         </div>

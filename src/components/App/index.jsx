@@ -15,11 +15,10 @@ const App = () => {
   const [data, setData] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [orders, setOrders] = useState([]);
-  const [cart, setCart] = useState({
-    data: [],
-    status: false,
-  });
-  
+  const [cart, setCart] = useState({ data: [], status: false });
+  const [isLoading, setIsLoading] = useState();
+  const [status, setStatus] = useState(false);
+
   const isItemAdded = (id) => {
     return cart.data.some((obj) => +obj.parentId === +id);
   }
@@ -30,29 +29,38 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const cart = (await axios.get(`${API}/cart`)).data;
-      const orders = (await axios.get(`${API2}/orders`)).data;
-      const favorites = (await axios.get(`${API2}/favorites`)).data;
-      const sneakers = (await axios.get(`${API}/sneakers`)).data;
+      try {
+        setIsLoading(true)
 
-      setFavorites(favorites);
-      setOrders(orders);
-      setCart((prev) => ({ ...prev, data: cart}))
-      setData(sneakers)
+        const cart = (await axios.get(`${API}/cart`).catch((e) => {throw new Error(e)})).data;
+        const orders = (await axios.get(`${API2}/orders`).catch((e) => {throw new Error(e)})).data;
+        const favorites = (await axios.get(`${API2}/favorites`).catch((e) => {throw new Error(e)})).data;
+        const sneakers = (await axios.get(`${API}/sneakers`).catch((e) => {throw new Error(e)})).data;
+
+        setIsLoading(false);
+
+        setFavorites(favorites);
+        setOrders(orders);
+        setCart((prev) => ({ ...prev, data: cart }))
+        setData(sneakers)
+      } catch (error) {
+        return error;
+      };
     };
 
     fetchData();
+
   }, []);
 
   return (
-    <AppContext.Provider value={{ data, setData, favorites, setFavorites, orders, setOrders, cart, setCart, isItemAdded, isItemFavorited }}>
+    <AppContext.Provider value={{status, setStatus, data, setData, favorites, setFavorites, orders, setOrders, cart, setCart, isItemAdded, isItemFavorited, isLoading, setIsLoading }}>
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout setCart={setCart} cart={cart} setOrders={setOrders} />}>
-            <Route index element={<Home data={data} setData={setData} cart={cart} setCart={setCart} />} />
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
             <Route path="favorites" element={<Favorites />} />
-            <Route path="orders" element={<Orders orders={orders} setOrders={setOrders} />} />
+            <Route path="orders" element={<Orders />} />
           </Route>
         </Routes>
       </BrowserRouter>

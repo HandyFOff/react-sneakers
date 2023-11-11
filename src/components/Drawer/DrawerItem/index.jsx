@@ -1,28 +1,8 @@
-import { useContext } from 'react';
-import { API } from '../../App';
 import styles from './DrawerItem.module.scss'
-import { AppContext } from '../../../context';
-import axios from 'axios';
+import { useDrawer } from '../../../hooks/useDrawer';
 
 const DrawerItem = ({id, title, image, price, parentId}) => {
-    const {cart, setCart} = useContext(AppContext);
-
-    console.log(id);
-    
-    const removeItem = async () => {
-        const response = await axios.get(`${API}cart`);
-        console.log(response.data);
-        const filterId = response.data.filter((item) => +item.id === +id);
-
-        console.log(cart, response.data, parentId);
-
-        await axios.delete(`${API}cart/${filterId[0].id}`);
-        
-        setCart((prev) => ({
-            ...prev,
-            data: prev.data.filter((item) => item.id !== parentId),
-        }));
-    }
+    const {removeItem} = useDrawer();
 
     return (
         <div className={styles.item}>
@@ -33,7 +13,7 @@ const DrawerItem = ({id, title, image, price, parentId}) => {
                 <h1 className={styles.title}>{title}</h1>
                 <h1 className={styles.price}>{price} руб.</h1>
             </div>
-            <button className={styles.btn} onClick={removeItem}>
+            <button className={styles.btn} onClick={() => removeItem(parentId, id)}>
                 <img src="assets/icons/remove.svg" alt="Remove Item" />
             </button>
         </div>

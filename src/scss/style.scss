@@ -30,10 +30,6 @@ $dfont: 14px;
     }
 
     @media (max-width: 596px) {
-        padding: 35px;
-    }
-
-    @media (max-width: 425px) {
         padding: 0px;
     }
 }
@@ -42,7 +38,7 @@ body {
     font-family: $font;
     background-color: #E7F6FF;
 
-    @media (max-width: 425px) {
+    @media (max-width: 596px) {
         background-color: #FFFFFF;
     }
 }
