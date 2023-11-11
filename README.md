@@ -1,13 +1,13 @@
-# React Sneakers
+# ReactSneakers
 
-### Стек технологий
+### Technology stack
 
 1. React + JavaScript
-2. CSS / SASS
+2. CSS/SASS
 3. CSS Modules
-4. Работа с АПИ - axios
+4. Working with API - axios
 
-### Список зависимостей
+### List of dependencies
 
 1. react-router-dom
 2. axios
@@ -15,15 +15,15 @@
 4. react-slick
 5. sass
 
-### Функцоинал сайта
+### Functionality
 
-1. Добавление товара в корзину
-2. Добавление товара в избранные
-3. Оформление заказа + вывод заказов на отдельной страницы
+1. Adding an item to the cart
+2. Adding a product to favorites
+3. Placing an order + displaying orders on a separate page
 
-### Дальнейшие планы
+### Future plans
 
-1. [ ] Привязка корзины, избранных, списка заказанных товаров к пользователю (либо сессиями, либо куки)
-2. [ ] Отдельная страница карточки товара с его описанием
+1. [ ] Linking the cart, favorites, list of ordered goods to the user (either sessions or cookies)
+2. [ ] Page of the product card with its description
 
-### Дизайн, идея и прочие материалы были взяты с канала - [Archakov Blog](https://www.youtube.com/@ArchakovBlog) P.S - Большой ему респект :)
+### The design, idea and other materials were taken from the channel - [Archakov Blog](https://www.youtube.com/@ArchakovBlog) P.S - Much respect to him :)
