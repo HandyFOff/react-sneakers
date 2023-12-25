@@ -1,13 +1,13 @@
 /* ======Миксины====== */
-@import 'mixins.scss';
+@import "mixins.scss";
 /* ======/Миксины====== */
 
 /* ======Шрифты====== */
-@import 'fonts.scss';
+@import "fonts.scss";
 /* ======/Шрифты====== */
 
 /* ======Переменные====== */
-@import 'variables.scss';
+@import "variables.scss";
 
 $font: Inter;
 $dfont: 14px;
@@ -15,30 +15,30 @@ $dfont: 14px;
 /* ======/Переменные====== */
 
 /* ======Обнуление====== */
-@import 'null.scss';
+@import "null.scss";
 /* ======/Обнуление====== */
 
 #root {
-    padding: 85px;
+  padding: 85px;
 
-    @media (max-width: 1024px) {
-        padding: 75px;
-    }
+  @media (max-width: 1024px) {
+    padding: 75px;
+  }
 
-    @media (max-width: 896px) {
-        padding: 55px;
-    }
+  @media (max-width: 896px) {
+    padding: 55px;
+  }
 
-    @media (max-width: 596px) {
-        padding: 0px;
-    }
+  @media (max-width: 596px) {
+    padding: 0px;
+  }
 }
 
 body {
-    font-family: $font;
-    background-color: #E7F6FF;
+  font-family: $font;
+  background-color: #e7f6ff;
 
-    @media (max-width: 596px) {
-        background-color: #FFFFFF;
-    }
+  @media (max-width: 596px) {
+    background-color: #ffffff;
+  }
 }
