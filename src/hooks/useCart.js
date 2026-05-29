@@ -31,12 +31,12 @@ export const useCart = () => {
 
   const handlerRemoveFromCart = async ({ id }) => {
     try {
-      const response = await axios.get(`${API}cart`).catch((e) => {
+      const response = await axios.get(`${API}/cart`).catch((e) => {
         throw new Error(e);
       });
       const filterId = response.data.filter((item) => item.parentId === id);
 
-      await axios.delete(`${API}cart/${filterId[0].id}`).catch((e) => {
+      await axios.delete(`${API}/cart/${filterId[0].id}`).catch((e) => {
         throw new Error(e);
       });
 

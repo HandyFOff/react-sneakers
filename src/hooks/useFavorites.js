@@ -22,7 +22,7 @@ export const useFavorites = () => {
 
   const handlerRemoveFromFavorite = async (active, id) => {
     try {
-      const response = await axios.get(`${API2}favorites`).catch((e) => {
+      const response = await axios.get(`${API2}/favorites`).catch((e) => {
         throw new Error(e);
       });
 
@@ -31,7 +31,7 @@ export const useFavorites = () => {
         filterId = response.data.filter((item) => +item.id === +id);
       }
 
-      await axios.delete(`${API2}favorites/${filterId[0].id}`).catch((e) => {
+      await axios.delete(`${API2}/favorites/${filterId[0].id}`).catch((e) => {
         throw new Error(e);
       });
 

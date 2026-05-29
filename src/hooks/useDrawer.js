@@ -54,12 +54,12 @@ export const useDrawer = () => {
 
   const removeItem = async (id, parentId) => {
     try {
-      const response = await axios.get(`${API}cart`).catch((e) => {
+      const response = await axios.get(`${API}/cart`).catch((e) => {
         throw new Error(e);
       });
       const filterId = response.data.filter((item) => +item.id === +id);
 
-      await axios.delete(`${API}cart/${filterId[0].id}`).catch((e) => {
+      await axios.delete(`${API}/cart/${filterId[0].id}`).catch((e) => {
         throw new Error(e);
       });
 

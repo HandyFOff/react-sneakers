@@ -16,8 +16,8 @@ const Home = lazy(() =>
   import(/* webpackChunkName: "Home" */ "../../pages/Home")
 );
 
-export const API = "https://6543a8f001b5e279de20c076.mockapi.io/";
-export const API2 = "https://64fcc244605a026163aec998.mockapi.io/";
+export const API = "https://6543a8f001b5e279de20c076.mockapi.io";
+export const API2 = "https://64fcc244605a026163aec998.mockapi.io";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -40,6 +40,11 @@ const App = () => {
       try {
         setIsLoading(true);
 
+        const sneakers = (
+          await axios.get(`${API}/sneakers`).catch((e) => {
+            throw new Error(e);
+          })
+        ).data;
         const cart = (
           await axios.get(`${API}/cart`).catch((e) => {
             throw new Error(e);
@@ -55,14 +60,8 @@ const App = () => {
             throw new Error(e);
           })
         ).data;
-        const sneakers = (
-          await axios.get(`${API}/sneakers`).catch((e) => {
-            throw new Error(e);
-          })
-        ).data;
 
         setIsLoading(false);
-
         setFavorites(favorites);
         setOrders(orders);
         setCart((prev) => ({ ...prev, data: cart }));
